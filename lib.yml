@@ -1,0 +1,23 @@
+---
+name: Zstd2
+ldflags: "-lzstd"
+packages: zstd
+destdir: src/zstd/
+definitions:
+  lib:
+    description: zstd
+    includes:
+    - zstd.h
+    prefixes:
+    - ZSTD
+    - Zstd
+    - zstd
+rename:
+  rules:
+    "*":
+    - pattern: ^zstd_
+      replacement: ""
+    - pattern: ZSTD_
+      replacement: ""
+    - pattern: Zstd_
+      replacement: ""
