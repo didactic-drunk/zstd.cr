@@ -16,12 +16,12 @@ Crystal bindings to the Zstandard (zstd) compression library
 
 ## Usage
 
-### Buffer API
 ```crystal
 require "zstd"
 
+### Buffer API
 cctx = Zstd::Compress::Context.new
-cctx.compression_level = 1
+cctx.level = 1
 cbuf = cctx.compress buf
 
 dctx = Zstd::Decompress::Context.new
@@ -32,8 +32,7 @@ dbuf = dctx.decompress cbuf, Bytes.new(buf.bytesize)
 ```crystal
 buf = Bytes.new 5
 mio = IO::Memory.new
-Zstd::Compress::IO.open(mio) do |cio|
-  cio.compression_level = 1
+Zstd::Compress::IO.open(mio, level: 1) do |cio|
   cio.write buf
 end
 

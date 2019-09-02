@@ -4,19 +4,36 @@ class Zstd::Compress::IO < IO
   class Error < Zstd::Error
   end
 
+  OUTPUT_BUFFER_SIZE = Lib.c_stream_out_size.to_i
+
+  # Whether to close the enclosed `IO` when closing this writer.
+  property? sync_close = false
+
+  # Returns `true` if this writer is closed.
+  getter? closed = false
+
+  # Compression level (0..23)
+  delegate level, :level=, to: @ctx
+
   @ctx = Context.new
-  @obuf = Bytes.new Lib.c_stream_out_size
+  @obuf : Bytes
 
-  delegate compression_level, :compression_level=, to: @ctx
+  def initialize(@io : ::IO, *, output_buffer : Bytes? = nil)
+    @obuf = output_buffer || Bytes.new OUTPUT_BUFFER_SIZE
+  end
 
-  def initialize(@io : ::IO)
+  def self.open(io, *, output_buffer : Bytes? = nil)
+    cio = self.new(io, output_buffer: output_buffer)
+    yield cio
+  ensure
+    cio.try &.close
   end
 
   def write(slice : Bytes) : Nil
     write_loop Lib::ZstdEndDirective::ZstdEContinue, slice
   end
 
-  def write_loop(mode, slice : Bytes? = nil) : Nil
+  private def write_loop(mode, slice : Bytes? = nil) : Nil
     ibuffer = Lib::ZstdInBufferS.new
     remaining = if slice
                   ibuffer.src = slice.to_unsafe
@@ -54,13 +71,11 @@ class Zstd::Compress::IO < IO
   end
 
   def close : Nil
-    write_loop Lib::ZstdEndDirective::ZstdEEnd
-  end
+    return if @closed
+    @closed = true
 
-  def self.open(*args)
-    cio = self.new(*args)
-    yield cio
-  ensure
-    cio.try &.close
+    write_loop Lib::ZstdEndDirective::ZstdEEnd
+
+    @io.close if @sync_close
   end
 end

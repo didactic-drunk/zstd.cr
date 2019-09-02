@@ -1,8 +1,8 @@
-require "../lib"
-require "../error"
+require "../context"
+require "../compress"
 
-class Zstd::Compress::Context
-  class Error < Zstd::Error
+class Zstd::Compress::Context < Zstd::Context
+  class Error < Zstd::Context::Error
   end
 
   def initialize
@@ -16,7 +16,7 @@ class Zstd::Compress::Context
     dst[0, r]
   end
 
-  {% for name, param in {"compression_level" => "ZstdCCompressionLevel", "nb_workers" => "ZstdCNbWorkers"} %}
+  {% for name, param in {"level" => "ZstdCCompressionLevel", "nb_workers" => "ZstdCNbWorkers"} %}
 		def {{name.id}}
 			get_param Lib::ZstdCParameter::{{param.id}}
 		end
@@ -58,7 +58,7 @@ class Zstd::Compress::Context
     @ptr
   end
 
-  def finalize
+  def free!
     Lib.free_c_ctx @ptr
   end
 end

@@ -1,8 +1,7 @@
-require "../lib"
-require "../error"
+require "../context"
 
-class Zstd::Decompress::Context
-  class Error < Zstd::Error
+class Zstd::Decompress::Context < Zstd::Context
+  class Error < Zstd::Context::Error
   end
 
   def initialize
@@ -20,7 +19,7 @@ class Zstd::Decompress::Context
     @ptr
   end
 
-  def finalize
+  private def free!
     Lib.free_d_ctx @ptr
   end
 end

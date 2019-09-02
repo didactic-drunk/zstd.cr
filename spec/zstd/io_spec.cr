@@ -9,7 +9,7 @@ describe Zstd::Compress::IO do
 
     mio = IO::Memory.new
     Zstd::Compress::IO.open(mio) do |cio|
-      cio.compression_level = 1
+      cio.level = 1
 
       buf.bytesize.times do |i|
         cio.write buf[i, 1]

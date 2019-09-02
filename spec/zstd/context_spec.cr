@@ -8,13 +8,12 @@ describe Zstd::Compress::Context do
     buf[buf.bytesize / 2] = 1_u8
 
     cctx = Zstd::Compress::Context.new
-    p cctx.compression_level
-    cctx.compression_level = 1
-    p cctx.compression_level
+    cctx.level = 1
+    cctx.level.should eq 1
     dctx = Zstd::Decompress::Context.new
 
     cbuf = cctx.compress buf
-    p cctx.compression_level
+    cctx.level.should eq 1
     dbuf = dctx.decompress cbuf, Bytes.new(buf.bytesize)
 
     cbuf.bytesize.should be < dbuf.bytesize
