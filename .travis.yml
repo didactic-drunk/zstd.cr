@@ -3,8 +3,13 @@ os:
 - linux
 dist: xenial
 
-before_install:
-  - sudo apt-get install -y libzstd-dev
+cache:
+  directories:
+    - "$HOME/zstd2"
+
+before_script:
+  - ./build/travis_clone.sh
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 script:
   - crystal spec
