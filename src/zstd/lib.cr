@@ -193,3 +193,5 @@ module Zstd
     type ZstdOutBuffer = ZstdOutBufferS
   end
 end
+
+require "./version"
