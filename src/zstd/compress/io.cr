@@ -15,15 +15,15 @@ class Zstd::Compress::IO < IO
   # Compression level (0..23)
   delegate level, :level=, to: @ctx
 
-  @ctx = Context.new
   @obuf : Bytes
 
-  def initialize(@io : ::IO, *, output_buffer : Bytes? = nil)
+  def initialize(@io : ::IO, level : Int32 = DEFAULT_LEVEL, *, output_buffer : Bytes? = nil)
+    @ctx = Context.new level
     @obuf = output_buffer || Bytes.new OUTPUT_BUFFER_SIZE
   end
 
-  def self.open(io, *, output_buffer : Bytes? = nil)
-    cio = self.new(io, output_buffer: output_buffer)
+  def self.open(io, level : Int32 = DEFAULT_LEVEL, *, output_buffer : Bytes? = nil)
+    cio = self.new(io, level: level, output_buffer: output_buffer)
     yield cio
   ensure
     cio.try &.close

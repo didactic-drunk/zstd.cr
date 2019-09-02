@@ -2,5 +2,8 @@ module Zstd
 end
 
 module Zstd::Compress
-  DEFAULT_LEVEL = 3
+  # The default compression level.
+  #
+  # Uses ENV["ZSTD_CLEVEL"] just like the command line utilities.
+  DEFAULT_LEVEL = ENV["ZSTD_CLEVEL"]?.try(&.to_i) || 3
 end

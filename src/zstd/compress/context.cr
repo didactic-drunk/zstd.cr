@@ -5,9 +5,11 @@ class Zstd::Compress::Context < Zstd::Context
   class Error < Zstd::Context::Error
   end
 
-  def initialize
+  def initialize(level : Int32 = DEFAULT_LEVEL)
     @ptr = Lib.create_c_ctx
-    raise Error.new("NULL ptr create_c_ctx") if @ptr.null?
+    raise Error.new("NULL ptr create_c_ctx") if !@ptr || @ptr.null?
+
+    self.level = level
   end
 
   def compress(src : Bytes, dst : Bytes = Bytes.new(compress_bound(src.bytesize))) : Bytes
@@ -15,6 +17,8 @@ class Zstd::Compress::Context < Zstd::Context
     Error.raise_if_error r, "compress_c_ctx"
     dst[0, r]
   end
+
+  # TODO: more parameters.
 
   {% for name, param in {"level" => "ZstdCCompressionLevel", "nb_workers" => "ZstdCNbWorkers"} %}
 		def {{name.id}}
@@ -26,7 +30,7 @@ class Zstd::Compress::Context < Zstd::Context
 		end
 	{% end %}
 
-  # maximum output buffer size for compression
+  # Maximum output buffer size for compression
   def compress_bound(size)
     r = Lib.compress_bound size
     Error.raise_if_error r, "compress_bound"
@@ -34,7 +38,7 @@ class Zstd::Compress::Context < Zstd::Context
   end
 
   # [https://facebook.github.io/zstd/zstd_manual.html#Chapter6](https://facebook.github.io/zstd/zstd_manual.html#Chapter6)
-  # returns the frame content size if known.
+  # Returns the frame content size if known.
   def frame_content_size(src : Bytes)
     r = Lib.get_frame_content_size src.bytesize
     Error.raise_if_error r, "Lib.get_frame_content_size"
