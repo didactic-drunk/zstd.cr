@@ -14,9 +14,10 @@ Crystal bindings to the Zstandard (zstd) compression library
 - [x] `export ZSTD_CLEVEL=1` sets the default compression level just like the zstd command line utilities.
 
 ## Todo
-- [] Auto install the most recent zstd if the system library is old or unavailable.
-- [] Custom dictionaries
-- [] Support more zstd params.
+- [ ] Auto install the most recent zstd if the system library is old or unavailable.
+- [ ] Custom dictionaries
+- [ ] Support more zstd params.
+- [ ] More specs.
 
 ## Installation
 
@@ -36,15 +37,15 @@ Crystal bindings to the Zstandard (zstd) compression library
 require "zstd"
 ```
 
-```
 ### Buffer API
+```
 
 ```crystal
 cctx = Zstd::Compress::Context.new(level: 1)
 cbuf = cctx.compress buf
 
 dctx = Zstd::Decompress::Context.new
-dbuf = dctx.decompress cbuf, Bytes.new(buf.bytesize)
+dbuf = dctx.decompress cbuf
 ```
 
 ### Streaming API
@@ -58,13 +59,9 @@ end
 cbuf = mio.to_slice
 
 mio = IO::Memory.new cbuf
-dbuf = Zstd::Decompress::IO.open(mio) do |dio|
-  tbuf = Bytes.new buf.bytesize * 2
-  tsize = dio.read dbuf
-  tbuf[0, tsize]
+str = Zstd::Decompress::IO.open(mio) do |dio|
+  dio.gets_to_end
 end
-
-# dbuf.should eq buf
 ```
 
 

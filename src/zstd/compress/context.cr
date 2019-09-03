@@ -18,9 +18,10 @@ class Zstd::Compress::Context < Zstd::Context
     dst[0, r]
   end
 
-  # TODO: more parameters.
-
-  {% for name, param in {"level" => "ZstdCCompressionLevel", "nb_workers" => "ZstdCNbWorkers"} %}
+  # TODO: maybe more parameters.
+  # ZSTD_c_dictIDFlag
+  # ZSTD_c_rsyncable experimental
+  {% for name, param in {"level" => "ZstdCCompressionLevel", "checksum" => "ZstdCChecksumFlag", "threads" => "ZstdCNbWorkers"} %}
 		def {{name.id}}
 			get_param Lib::ZstdCParameter::{{param.id}}
 		end
@@ -34,15 +35,6 @@ class Zstd::Compress::Context < Zstd::Context
   def compress_bound(size)
     r = Lib.compress_bound size
     Error.raise_if_error r, "compress_bound"
-    r
-  end
-
-  # [https://facebook.github.io/zstd/zstd_manual.html#Chapter6](https://facebook.github.io/zstd/zstd_manual.html#Chapter6)
-  # Returns the frame content size if known.
-  def frame_content_size(src : Bytes)
-    r = Lib.get_frame_content_size src.bytesize
-    Error.raise_if_error r, "Lib.get_frame_content_size"
-    # BUG: nil for ZSTD_CONTENTSIZE_UNKNOWN
     r
   end
 

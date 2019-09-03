@@ -14,7 +14,7 @@ describe Zstd::Compress::Context do
 
     cbuf = cctx.compress buf
     cctx.level.should eq 1
-    dbuf = dctx.decompress cbuf, Bytes.new(buf.bytesize)
+    dbuf = dctx.decompress cbuf
 
     cbuf.bytesize.should be < dbuf.bytesize
     dbuf.should eq buf
