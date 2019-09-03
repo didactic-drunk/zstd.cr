@@ -50,6 +50,7 @@ class Zstd::Compress::Context < Zstd::Context
     val
   end
 
+  # :nodoc:
   def to_unsafe
     @ptr
   end

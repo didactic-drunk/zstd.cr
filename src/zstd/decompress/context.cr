@@ -2,6 +2,8 @@ require "../context"
 
 class Zstd::Decompress::Context < Zstd::Context
   class Error < Zstd::Context::Error
+    class FrameSizeUnknown < Error
+    end
   end
 
   def initialize
@@ -9,22 +11,46 @@ class Zstd::Decompress::Context < Zstd::Context
     raise Error.new("NULL ptr create_c_ctx") if @ptr.null?
   end
 
+  # Returns decompressed `Bytes`
+  # `dst` is an optional output buffer that must be >= frame_content_size
   def decompress(src : Bytes, dst : Bytes? = nil) : Bytes
-    dst ||= Bytes.new frame_content_size src
+    dst ||= begin
+      size = frame_content_size src
+      raise Error::FrameSizeUnknown.new("can't automatically determine destination size, try the streaming API") unless size
+      Bytes.new size
+    end
+
     r = Lib.decompress_d_ctx @ptr, dst, dst.bytesize, src, src.bytesize
     Error.raise_if_error r, "decompress_d_ctx"
     dst[0, r]
   end
 
+  # :nodoc:
+  CONTENT_SIZE_UNKNOWN = 0_u64 - 1
+  CONTENT_SIZE_ERROR   = 0_u64 - 2
+
   # [https://facebook.github.io/zstd/zstd_manual.html#Chapter6](https://facebook.github.io/zstd/zstd_manual.html#Chapter6)
   # Returns the frame content size if known.
+  #
+  # Notes:
+  # * Always available when using single pass compression.
+  # * Not available if compressed using streaming mode.
+  # * decompressed size can be very large (64-bits value), potentially larger than what local system can handle as a single memory segment. In which case, it's necessary to use streaming mode to decompress data.
+  # * If source is untrusted, decompressed size could be wrong or intentionally modified. Always ensure return value fits within application's authorized limits. Each application can set its own limits.
   def frame_content_size(src : Bytes)
     r = Lib.get_frame_content_size src, src.bytesize
-    Error.raise_if_error r, "Lib.get_frame_content_size"
-    # BUG: nil for ZSTD_CONTENTSIZE_UNKNOWN
+    case r
+    when CONTENT_SIZE_UNKNOWN
+      nil
+    when CONTENT_SIZE_ERROR
+      raise Error.new "get_frame_content_size"
+    else
+      r
+    end
     r
   end
 
+  # :nodoc:
   def to_unsafe
     @ptr
   end

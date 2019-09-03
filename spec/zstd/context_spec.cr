@@ -2,15 +2,24 @@ require "../spec_helper"
 require "../../src/zstd/compress/context"
 require "../../src/zstd/decompress/context"
 
-describe Zstd::Compress::Context do
-  it "Simple API compress/decompress" do
-    buf = Bytes.new 128
-    buf[buf.bytesize / 2] = 1_u8
+private def contexts_with_bufs
+  buf = Bytes.new 128
+  buf[buf.bytesize / 2] = 1_u8
 
-    cctx = Zstd::Compress::Context.new
+  dbuf2 = Bytes.new buf.bytesize
+
+  cctx = Zstd::Compress::Context.new(level: 1)
+  dctx = Zstd::Decompress::Context.new
+
+  {cctx, dctx, buf, dbuf2}
+end
+
+describe Zstd::Compress::Context do
+  it "Simple API compress/decompress with auto buffer" do
+    cctx, dctx, buf, dbuf2 = contexts_with_bufs
+
     cctx.level = 1
     cctx.level.should eq 1
-    dctx = Zstd::Decompress::Context.new
 
     cbuf = cctx.compress buf
     cctx.level.should eq 1
@@ -18,5 +27,25 @@ describe Zstd::Compress::Context do
 
     cbuf.bytesize.should be < dbuf.bytesize
     dbuf.should eq buf
+  end
+
+  it "Simple API compress/decompress with destination buffer" do
+    cctx, dctx, buf, dbuf2 = contexts_with_bufs
+
+    cbuf = cctx.compress buf
+    dbuf = dctx.decompress cbuf, dbuf2
+
+    cbuf.bytesize.should be < dbuf.bytesize
+    dbuf.should eq buf
+  end
+
+  it "Simple API compress/decompress raises with small destination buffer" do
+    cctx, dctx, buf, dbuf2 = contexts_with_bufs
+    cbuf = cctx.compress buf
+
+    dbuf2 = Bytes.new 1
+    expect_raises Zstd::Decompress::Context::Error do
+      dbuf = dctx.decompress cbuf, dbuf2
+    end
   end
 end
