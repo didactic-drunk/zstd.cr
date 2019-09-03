@@ -5,7 +5,7 @@ module Zstd
     end
 
     def initialize(r, msg : String)
-      super "#{msg} returned #{r}"
+      super "#{msg} returned #{r} #{String.new(Lib.get_error_name(r))}"
     end
 
     def initialize(msg : String)
