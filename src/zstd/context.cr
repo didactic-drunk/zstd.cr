@@ -5,8 +5,6 @@ abstract class Zstd::Context
   class Error < Zstd::Error
   end
 
-  property compression_level = 3
-
   @freed = false
 
   def close

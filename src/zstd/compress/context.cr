@@ -5,7 +5,7 @@ class Zstd::Compress::Context < Zstd::Context
   class Error < Zstd::Context::Error
   end
 
-  def initialize(level : Int32 = DEFAULT_LEVEL)
+  def initialize(level : Int32 = LEVEL_DEFAULT)
     @ptr = Lib.create_c_ctx
     raise Error.new("NULL ptr create_c_ctx") if !@ptr || @ptr.null?
 

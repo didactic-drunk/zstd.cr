@@ -15,14 +15,17 @@ class Zstd::Decompress::IO < ::IO
 
   @ctx = Context.new
   @ibuf : Bytes
-  @ibuf_size = 0_i64
-  @ibuf_pos = 0_i64
   @ieof = false
+  @oeof = false
+  @more_output = false
+
+  @ibuffer = Lib::ZstdInBufferS.new
 
   def initialize(@io : ::IO, @sync_close = false, @dict : Bytes? = nil, *, input_buffer : Bytes? = nil)
     # TODO: dict
     raise NotImplementedError.new("missingd dict support") if @dict
     @ibuf = input_buffer || Bytes.new INPUT_BUFFER_SIZE
+    @ibuffer.src = @ibuf.to_unsafe
   end
 
   def self.open(io, sync_close = false, dict : Bytes? = nil, *, input_buffer = nil)
@@ -32,40 +35,51 @@ class Zstd::Decompress::IO < ::IO
     dio.try &.close
   end
 
+  # :nodoc:
+  def io=(@io : ::IO)
+    @ibuffer.pos = 0
+    @ibuffer.size = 0
+    @more_output = false
+    @ieof = false
+    @oeof = false
+    @closed = false
+  end
+
   def read(slice : Bytes)
     check_open
-    fill_buffer unless @ieof
-    return 0 if @ieof
-
-    ibuffer = Lib::ZstdInBufferS.new
-    ibuffer.src = @ibuf.to_unsafe
-    ibuffer.size = @ibuf.bytesize
-    ibuffer.pos = @ibuf_pos
+    return 0 if @oeof
 
     obuffer = Lib::ZstdOutBufferS.new
     obuffer.dst = slice.to_unsafe
     obuffer.size = slice.bytesize
 
-    iptr = pointerof(ibuffer).as(Lib::ZstdInBuffer*)
+    iptr = pointerof(@ibuffer).as(Lib::ZstdInBuffer*)
     optr = pointerof(obuffer).as(Lib::ZstdOutBuffer*)
 
-    # return 3
-    r = Lib.decompress_stream @ctx.to_unsafe.as(Lib::ZstdDCtx*), optr, iptr
-    @ibuf_pos = ibuffer.pos.to_i64
-    Error.raise_if_error r, "decompress_stream2"
+    # Feed input to decompress_stream until obuffer has data or end of input or output
+    until @ieof || @oeof || obuffer.pos != 0
+      fill_buffer
+
+      r = Lib.decompress_stream @ctx.to_unsafe.as(Lib::ZstdDCtx*), optr, iptr
+      Error.raise_if_error r, "decompress_stream2"
+      @oeof = 0 if r == 0
+
+      # But if `output.pos == output.size`, there might be some data left within internal buffers.,
+      # In which case, call ZSTD_decompressStream() again to flush whatever remains in the buffer.
+      @more_output = obuffer.pos == obuffer.size ? true : false
+    end
 
     obuffer.pos
   end
 
   private def fill_buffer
-    return @ibuf_size if @ibuf_size > 0 && @ibuf_pos != @ibuf_size
+    return if @ieof || @oeof || @more_output || @ibuffer.size > 0 && @ibuffer.pos != @ibuffer.size
 
-    @ibuf_pos = 0
+    @ibuffer.pos = 0
 
     len = @io.read @ibuf
-    @ibuf_size = len.to_i64
+    @ibuffer.size = len.to_i64
     @ieof = true if len == 0
-    len
   end
 
   def write(slice : Bytes) : Nil
@@ -75,8 +89,6 @@ class Zstd::Decompress::IO < ::IO
   def close : Nil
     return if @closed
     @closed = true
-
-    @ctx.close
 
     @io.close if @sync_close
   end

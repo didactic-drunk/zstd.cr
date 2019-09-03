@@ -12,17 +12,28 @@ class Zstd::Compress::IO < IO
   # Returns `true` if this writer is closed.
   getter? closed = false
 
-  # Compression level (0..23)
+  # Compression level (0..22)
   delegate level, :level=, to: @ctx
+
+  delegate checksum, :checksum=, to: @ctx
+  delegate threads, :threads=, to: @ctx
 
   @obuf : Bytes
 
-  def initialize(@io : ::IO, level : Int32 = DEFAULT_LEVEL, *, output_buffer : Bytes? = nil)
+  # output_buffer: If provided should be `OUTPUT_BUFFER_SIZE` bytes.
+  def initialize(@io : ::IO, level : Int32 = LEVEL_DEFAULT, *, output_buffer : Bytes? = nil)
     @ctx = Context.new level
     @obuf = output_buffer || Bytes.new OUTPUT_BUFFER_SIZE
   end
 
-  def self.open(io, level : Int32 = DEFAULT_LEVEL, *, output_buffer : Bytes? = nil)
+  def self.open(io, level : Int32 = LEVEL_DEFAULT, *, output_buffer : Bytes? = nil)
+    cio = self.new(io, level: level, output_buffer: output_buffer)
+    yield cio
+  ensure
+    cio.try &.close
+  end
+
+  def self.open(io, level : Int32 = LEVEL_DEFAULT, *, output_buffer : Bytes? = nil)
     cio = self.new(io, level: level, output_buffer: output_buffer)
     yield cio
   ensure
@@ -30,6 +41,7 @@ class Zstd::Compress::IO < IO
   end
 
   def write(slice : Bytes) : Nil
+    check_open
     write_loop Lib::ZstdEndDirective::ZstdEContinue, slice
   end
 
