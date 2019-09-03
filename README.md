@@ -1,6 +1,22 @@
 # zstd
+[![Build Status](https://travis-ci.org/didactic-drunk/zstd.cr.svg?branch=master)](https://travis-ci.org/didactic-drunk/zstd.cr)
+[![GitHub release](https://img.shields.io/github/release/didactic-drunk/zstd.cr.svg)](https://github.com/didactic-drunk/zstd.cr/releases)
+[![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://didactic-drunk.github.io/zstd.cr/)
 
 Crystal bindings to the Zstandard (zstd) compression library 
+
+## Features
+- [x] Performance optimized.  20M small decompression messages/sec.
+- [x] All API calls allow reusable buffers to reduce GC overhead.
+- [x] No heap allocations after #initialize.
+- [x] Crystal IO compatible Streaming API.
+- [x] Snappy like buffer API for handling small messages.
+- [x] `export ZSTD_CLEVEL=1` sets the default compression level just like the zstd command line utilities.
+
+## Todo
+- [] Auto install the most recent zstd if the system library is old or unavailable.
+- [] Custom dictionaries
+- [] Support more zstd params.
 
 ## Installation
 
@@ -18,10 +34,13 @@ Crystal bindings to the Zstandard (zstd) compression library
 
 ```crystal
 require "zstd"
+```
 
+```
 ### Buffer API
-cctx = Zstd::Compress::Context.new
-cctx.level = 1
+
+```crystal
+cctx = Zstd::Compress::Context.new(level: 1)
 cbuf = cctx.compress buf
 
 dctx = Zstd::Decompress::Context.new
@@ -56,10 +75,11 @@ TODO: Write development instructions here
 ## Contributing
 
 1. Fork it (<https://github.com/your-github-user/zstd/fork>)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+2. **Install a formatting check git hook (ln -sf ../../scripts/git/pre-commit .git/hooks)**
+3. Create your feature branch (`git checkout -b my-new-feature`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create a new Pull Request
 
 ## Contributors
 
