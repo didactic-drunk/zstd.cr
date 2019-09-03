@@ -38,7 +38,6 @@ require "zstd"
 ```
 
 ### Buffer API
-```
 
 ```crystal
 cctx = Zstd::Compress::Context.new(level: 1)
@@ -49,6 +48,7 @@ dbuf = dctx.decompress cbuf
 ```
 
 ### Streaming API
+
 ```crystal
 buf = Bytes.new 5
 mio = IO::Memory.new
@@ -56,9 +56,7 @@ Zstd::Compress::IO.open(mio, level: 1) do |cio|
   cio.write buf
 end
 
-cbuf = mio.to_slice
-
-mio = IO::Memory.new cbuf
+mio.rewind
 str = Zstd::Decompress::IO.open(mio) do |dio|
   dio.gets_to_end
 end
