@@ -48,4 +48,21 @@ describe Zstd::Compress::Context do
       dbuf = dctx.decompress cbuf, dbuf2
     end
   end
+
+  it "Simple API compress/decompress with checksums" do
+    cctx, dctx, buf, dbuf2 = contexts_with_bufs
+
+    cctx.level = 1
+
+    cbuf = cctx.compress buf
+
+    cctx.checksum = 1
+
+    cbuf2 = cctx.compress buf
+    cctx.checksum.should eq 1
+    cbuf2.bytesize.should eq (cbuf.bytesize + 4)
+    dbuf = dctx.decompress cbuf2
+
+    dbuf.should eq buf
+  end
 end
