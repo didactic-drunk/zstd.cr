@@ -13,7 +13,9 @@ class Zstd::Decompress::IO < ::IO
   # Returns `true` if this writer is closed.
   getter? closed = false
 
-  @ctx = Context.new
+  getter ctx = Context.new
+  delegate dict, :dict=, to: @ctx
+
   @ibuf : Bytes
   @ieof = false
   @oeof = false
@@ -21,15 +23,13 @@ class Zstd::Decompress::IO < ::IO
 
   @ibuffer = Lib::ZstdInBufferS.new
 
-  def initialize(@io : ::IO, @sync_close = false, @dict : Bytes? = nil, *, input_buffer : Bytes? = nil)
-    # TODO: dict
-    raise NotImplementedError.new("missingd dict support") if @dict
+  def initialize(@io : ::IO, @sync_close = false, *, input_buffer : Bytes? = nil)
     @ibuf = input_buffer || Bytes.new INPUT_BUFFER_SIZE
     @ibuffer.src = @ibuf.to_unsafe
   end
 
-  def self.open(io, sync_close = false, dict : Bytes? = nil, *, input_buffer = nil)
-    dio = self.new(io, sync_close: sync_close, dict: dict, input_buffer: input_buffer)
+  def self.open(io, sync_close = false, *, input_buffer = nil)
+    dio = self.new(io, sync_close: sync_close, input_buffer: input_buffer)
     yield dio
   ensure
     dio.try &.close

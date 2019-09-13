@@ -1,10 +1,18 @@
 require "../context"
+require "./dict"
 
+# When decompressing many times,
+# it is recommended to allocate a context only once,
+# and re-use it for each successive compression operation.
+# This will make workload friendlier for system's memory.
+# Use one context per thread for parallel execution.
 class Zstd::Decompress::Context < Zstd::Context
   class Error < Zstd::Context::Error
     class FrameSizeUnknown < Error
     end
   end
+
+  getter dict
 
   def initialize
     @ptr = Lib.create_d_ctx
@@ -23,6 +31,21 @@ class Zstd::Decompress::Context < Zstd::Context
     r = Lib.decompress_d_ctx @ptr, dst, dst.bytesize, src, src.bytesize
     Error.raise_if_error r, "decompress_d_ctx"
     dst[0, r]
+  end
+
+  # Reference a prepared dictionary, to be used to decompress next frames.
+  # The dictionary remains active for decompression of future frames using same DCtx.
+  # Currently, only one dictionary can be managed.
+  # Referencing a new dictionary effectively "discards" any previous one.
+  # Referencing a nil `Dict` means "return to no-dictionary mode".
+  def dict=(d : Dict)
+    r = Lib.d_ctx_ref_d_dict @ptr, d
+    Error.raise_if_error r, "d_ctx_ref_d_dict"
+    @dict = d
+  end
+
+  def dict=(buf : Bytes)
+    self.dict = Dict.new buf
   end
 
   # :nodoc:
