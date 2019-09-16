@@ -12,6 +12,7 @@ Crystal bindings to the Zstandard (zstd) compression library
 - [x] Crystal IO compatible Streaming API.
 - [x] Snappy like buffer API for handling small messages.
 - [x] `export ZSTD_CLEVEL=1` sets the default compression level just like the zstd command line utilities.
+- [x] Only require what you need for faster compilation. (require "zstd/compress/context")
 
 ## Todo
 - [ ] Auto install the most recent zstd if the system library is old or unavailable.

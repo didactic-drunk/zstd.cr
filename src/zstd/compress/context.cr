@@ -21,7 +21,7 @@ class Zstd::Compress::Context < Zstd::Context
   # TODO: maybe more parameters.
   # ZSTD_c_dictIDFlag
   # ZSTD_c_rsyncable experimental
-  {% for name, param in {"level" => "ZstdCCompressionLevel", "checksum" => "ZstdCChecksumFlag", "threads" => "ZstdCNbWorkers"} %}
+  {% for name, param in {"level" => "ZstdCCompressionLevel", "threads" => "ZstdCNbWorkers"} %}
 		def {{name.id}}
 			get_param Lib::ZstdCParameter::{{param.id}}
 		end
@@ -30,6 +30,25 @@ class Zstd::Compress::Context < Zstd::Context
 			set_param Lib::ZstdCParameter::{{param.id}}, val
 		end
 	{% end %}
+
+  {% for name, param in {"checksum_flag" => "ZstdCChecksumFlag"} %}
+		private def {{name.id}}
+			get_param Lib::ZstdCParameter::{{param.id}}
+		end
+
+		private def {{name.id}}=(val)
+			set_param Lib::ZstdCParameter::{{param.id}}, val
+		end
+	{% end %}
+
+  def checksum
+    checksum_flag.to_i != 0
+  end
+
+  def checksum=(value : Bool)
+    self.checksum_flag = value ? 1 : 0
+    value
+  end
 
   # Maximum output buffer size for compression
   def compress_bound(size)
