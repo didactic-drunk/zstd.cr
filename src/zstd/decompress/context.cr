@@ -1,6 +1,12 @@
 require "../context"
 require "./dict"
 
+# Usage:
+# ```
+# cctx = Zstd::Deompress::Context.new
+# dbuf = cctx.compress cbuf
+# ```
+#
 # When decompressing many times,
 # it is recommended to allocate a context only once,
 # and re-use it for each successive compression operation.
@@ -20,6 +26,7 @@ class Zstd::Decompress::Context < Zstd::Context
   end
 
   # Returns decompressed `Bytes`
+  #
   # `dst` is an optional output buffer that must be >= frame_content_size
   def decompress(src : Bytes, dst : Bytes? = nil) : Bytes
     dst ||= begin
@@ -36,6 +43,7 @@ class Zstd::Decompress::Context < Zstd::Context
   # Reference a prepared dictionary, to be used to decompress next frames.
   # The dictionary remains active for decompression of future frames using same DCtx.
   # Currently, only one dictionary can be managed.
+  #
   # Referencing a new dictionary effectively "discards" any previous one.
   # Referencing a nil `Dict` means "return to no-dictionary mode".
   def dict=(d : Dict)

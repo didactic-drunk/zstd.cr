@@ -1,6 +1,12 @@
 require "../context"
 require "../compress"
 
+# Usage:
+# ```
+# cctx = Zstd::Compress::Context.new
+# buf = Bytes.new 22
+# cbuf = cctx.compress buf
+# ```
 class Zstd::Compress::Context < Zstd::Context
   class Error < Zstd::Context::Error
   end
