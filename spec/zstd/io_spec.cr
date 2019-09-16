@@ -102,4 +102,13 @@ describe Zstd::Compress::IO do
       dbuf[0, dsize].should eq buf
     end
   end
+
+  it "Decompress zstd compressed file" do
+    File.open "#{__DIR__}/../data/foo.9.txt.zstd" do |fio|
+      Zstd::Decompress::IO.open fio do |cio|
+        buf = cio.gets_to_end
+        buf[0, 6].should eq "foobaz"
+      end
+    end
+  end
 end
