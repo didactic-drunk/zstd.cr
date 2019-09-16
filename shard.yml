@@ -1,13 +1,10 @@
+---
 name: zstd
-version: 0.8.0
-
+version: 1.0.0
 authors:
-  - Didactic Drunk <1479616+didactic-drunk@users.noreply.github.com>
-
+- Didactic Drunk <1479616+didactic-drunk@users.noreply.github.com>
 crystal: 0.29.0-dev
-
 development_dependencies:
   libgen:
     github: olbat/libgen
-
 license: MIT
