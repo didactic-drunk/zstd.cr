@@ -7,6 +7,11 @@ abstract class Zstd::Context
 
   @freed = false
 
+  # TODO: copycctx, copydctx
+  def dup
+    raise NotImplementedError.new
+  end
+
   def close
     free
   end
