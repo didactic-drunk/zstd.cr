@@ -81,6 +81,13 @@ class Zstd::Decompress::Context < Zstd::Context
     r
   end
 
+  # Give the _current_ memory usage of zstd context.
+  #
+  # Note that object memory usage can evolve (increase or decrease) over time.
+  def memsize
+    Lib.sizeof_d_ctx self
+  end
+
   # :nodoc:
   def to_unsafe
     @ptr

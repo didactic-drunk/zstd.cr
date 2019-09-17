@@ -65,4 +65,10 @@ describe Zstd::Compress::Context do
 
     dbuf.should eq buf
   end
+
+  it "memsizes" do
+    cctx, dctx, _, _ = contexts_with_bufs
+    cctx.memsize.should be > 0
+    dctx.memsize.should be > 0
+  end
 end

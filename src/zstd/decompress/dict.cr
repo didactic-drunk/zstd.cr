@@ -7,6 +7,13 @@ module Zstd::Decompress
       @ptr = Lib.create_d_dict buf, buf.bytesize
     end
 
+    # Give the _current_ memory usage of zstd dictionary.
+    #
+    # Note that object memory usage can evolve (increase or decrease) over time.  Maybe?
+    def memsize
+      Lib.sizeof_d_dict self
+    end
+
     def finalize
       Lib.free_d_dict @ptr
     end
