@@ -87,7 +87,7 @@ class Zstd::Compress::Context < Zstd::Context
     @ptr
   end
 
-  def free!
+  def free! : Nil
     Lib.free_c_ctx @ptr
   end
 end

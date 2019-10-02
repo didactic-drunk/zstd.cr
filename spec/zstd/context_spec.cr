@@ -4,7 +4,7 @@ require "../../src/zstd/decompress/context"
 
 private def contexts_with_bufs
   buf = Bytes.new 128
-  buf[buf.bytesize / 2] = 1_u8
+  buf[buf.bytesize // 2] = 1_u8
 
   dbuf2 = Bytes.new buf.bytesize
 

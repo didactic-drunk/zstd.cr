@@ -6,7 +6,7 @@ require "random"
 describe Zstd::Compress::IO do
   it "Streaming API compress/decompress" do
     buf = Bytes.new 128
-    buf[buf.bytesize / 2] = 255_u8
+    buf[buf.bytesize // 2] = 255_u8
 
     mio = IO::Memory.new
     Zstd::Compress::IO.open(mio) do |cio|
@@ -36,7 +36,7 @@ describe Zstd::Compress::IO do
     # # read with small buf
     mio = IO::Memory.new cbuf
     Zstd::Decompress::IO.open(mio) do |dio|
-      dbuf = Bytes.new buf.bytesize / 2
+      dbuf = Bytes.new buf.bytesize // 2
       dsize = 0
       2.times do
         ds = dio.read dbuf

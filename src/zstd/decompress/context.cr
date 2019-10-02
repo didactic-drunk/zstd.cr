@@ -57,8 +57,8 @@ class Zstd::Decompress::Context < Zstd::Context
   end
 
   # :nodoc:
-  CONTENT_SIZE_UNKNOWN = 0_u64 - 1
-  CONTENT_SIZE_ERROR   = 0_u64 - 2
+  CONTENT_SIZE_UNKNOWN = 0_u64 &- 1
+  CONTENT_SIZE_ERROR   = 0_u64 &- 2
 
   # [https://facebook.github.io/zstd/zstd_manual.html#Chapter6](https://facebook.github.io/zstd/zstd_manual.html#Chapter6)
   # Returns the frame content size if known.
@@ -93,7 +93,7 @@ class Zstd::Decompress::Context < Zstd::Context
     @ptr
   end
 
-  private def free!
+  private def free! : Nil
     Lib.free_d_ctx @ptr
   end
 end
