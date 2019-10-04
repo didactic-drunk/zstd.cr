@@ -14,9 +14,11 @@ Crystal bindings to the Zstandard (zstd) compression library
 - [x] `export ZSTD_CLEVEL=1` sets the default compression level just like the zstd command line utilities.
 - [x] Only require what you need for faster compilation. (require "zstd/compress/context")
 
+## Experimental Features.  API's subject to change.
+- [x] Custom dictionaries.
+
 ## Todo
 - [ ] Auto install the most recent zstd if the system library is old or unavailable.
-- [ ] Custom dictionaries
 - [ ] Support more zstd params.
 - [ ] More specs.
 
@@ -62,11 +64,6 @@ str = Zstd::Decompress::IO.open(mio) do |dio|
   dio.gets_to_end
 end
 ```
-
-
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 

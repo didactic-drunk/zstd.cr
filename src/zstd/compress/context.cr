@@ -1,5 +1,6 @@
 require "../context"
 require "../compress"
+require "./dict"
 
 # Usage:
 # ```
@@ -10,6 +11,8 @@ require "../compress"
 class Zstd::Compress::Context < Zstd::Context
   class Error < Zstd::Context::Error
   end
+
+  getter dict
 
   def initialize(level : Int32 = LEVEL_DEFAULT)
     @ptr = Lib.create_c_ctx
@@ -22,6 +25,13 @@ class Zstd::Compress::Context < Zstd::Context
     r = Lib.compress2 @ptr, dst, dst.bytesize, src, src.bytesize
     Error.raise_if_error r, "compress_c_ctx"
     dst[0, r]
+  end
+
+  # Overrides compression level.
+  def dict=(d : Dict)
+    r = Lib.c_ctx_ref_c_dict @ptr, d
+    Error.raise_if_error r, "d_ctx_ref_c_dict"
+    @dict = d
   end
 
   # TODO: maybe more parameters.
@@ -87,7 +97,7 @@ class Zstd::Compress::Context < Zstd::Context
     @ptr
   end
 
-  def free! : Nil
+  protected def free! : Nil
     Lib.free_c_ctx @ptr
   end
 end

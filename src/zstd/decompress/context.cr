@@ -93,7 +93,7 @@ class Zstd::Decompress::Context < Zstd::Context
     @ptr
   end
 
-  private def free! : Nil
+  protected def free! : Nil
     Lib.free_d_ctx @ptr
   end
 end
