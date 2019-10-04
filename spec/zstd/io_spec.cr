@@ -108,6 +108,7 @@ describe Zstd::Compress::IO do
       Zstd::Decompress::IO.open fio do |cio|
         buf = cio.gets_to_end
         buf[0, 6].should eq "foobaz"
+        buf.bytesize.should eq 420946
       end
     end
   end

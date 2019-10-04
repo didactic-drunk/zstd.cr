@@ -23,13 +23,15 @@ class Zstd::Decompress::IO < ::IO
 
   @ibuffer = Lib::ZstdInBufferS.new
 
-  def initialize(@io : ::IO, @sync_close = false, *, input_buffer : Bytes? = nil)
+  def initialize(@io : ::IO, @sync_close = false, *, input_buffer : Bytes? = nil, dict : Zstd::Dict? = nil)
     @ibuf = input_buffer || Bytes.new INPUT_BUFFER_SIZE
     @ibuffer.src = @ibuf.to_unsafe
+
+    @ctx.dict = dict if dict
   end
 
-  def self.open(io, sync_close = false, *, input_buffer = nil)
-    dio = self.new(io, sync_close: sync_close, input_buffer: input_buffer)
+  def self.open(io, sync_close = false, *, input_buffer = nil, dict = nil)
+    dio = self.new(io, sync_close: sync_close, input_buffer: input_buffer, dict: dict)
     yield dio
   ensure
     dio.try &.close

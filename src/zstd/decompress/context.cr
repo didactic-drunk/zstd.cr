@@ -1,5 +1,5 @@
 require "../context"
-require "./dict"
+require "../dict"
 
 # Usage:
 # ```
@@ -20,9 +20,11 @@ class Zstd::Decompress::Context < Zstd::Context
 
   getter dict
 
-  def initialize
+  def initialize(*, dict : Zstd::Dict? = nil)
     @ptr = Lib.create_d_ctx
     raise Error.new("NULL ptr create_c_ctx") if @ptr.null?
+
+    self.dict = dict if dict
   end
 
   # Returns decompressed `Bytes`
@@ -46,14 +48,11 @@ class Zstd::Decompress::Context < Zstd::Context
   #
   # Referencing a new dictionary effectively "discards" any previous one.
   # Referencing a nil `Dict` means "return to no-dictionary mode".
-  def dict=(d : Dict)
-    r = Lib.d_ctx_ref_d_dict @ptr, d
+  def dict=(d : Zstd::Dict)
+    r = Lib.d_ctx_ref_d_dict @ptr, d.ddict
     Error.raise_if_error r, "d_ctx_ref_d_dict"
     @dict = d
-  end
-
-  def dict=(buf : Bytes)
-    self.dict = Dict.new buf
+    d
   end
 
   # :nodoc:

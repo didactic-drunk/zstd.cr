@@ -119,9 +119,11 @@ module Zstd
     fun compress_using_dict = ZSTD_compress_usingDict(ctx : ZstdCCtx, dst : Void*, dst_capacity : LibC::SizeT, src : Void*, src_size : LibC::SizeT, dict : Void*, dict_size : LibC::SizeT, compression_level : LibC::Int) : LibC::SizeT
     fun create_c_ctx = ZSTD_createCCtx : ZstdCCtx
     fun create_c_dict = ZSTD_createCDict(dict_buffer : Void*, dict_size : LibC::SizeT, compression_level : LibC::Int) : ZstdCDict
+    fun create_c_dict_by_reference = ZSTD_createCDict_byReference(dict_buffer : Void*, dict_size : LibC::SizeT, compression_level : LibC::Int) : ZstdCDict
     fun create_c_stream = ZSTD_createCStream : ZstdCStream*
     fun create_d_ctx = ZSTD_createDCtx : ZstdDCtx
     fun create_d_dict = ZSTD_createDDict(dict_buffer : Void*, dict_size : LibC::SizeT) : ZstdDDict
+    fun create_d_dict_by_reference = ZSTD_createDDict_byReference(dict_buffer : Void*, dict_size : LibC::SizeT) : ZstdDDict
     fun create_d_stream = ZSTD_createDStream : ZstdDStream*
     fun d_ctx_load_dictionary = ZSTD_DCtx_loadDictionary(dctx : ZstdDCtx, dict : Void*, dict_size : LibC::SizeT) : LibC::SizeT
     fun d_ctx_ref_d_dict = ZSTD_DCtx_refDDict(dctx : ZstdDCtx, ddict : ZstdDDict) : LibC::SizeT

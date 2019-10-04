@@ -2,11 +2,11 @@ require "../lib"
 
 module Zstd::Decompress
   class Dict
-    # Create a digested dictionary, ready to start decompression operation without startup delay.
-    # May be shared between multiple `Context`'s
-    # `buf` is copied and may be reused or modified.
+    # :nodoc:
+    # Used internally by `Zstd::Dict`
     def initialize(buf : Bytes)
-      @ptr = Lib.create_d_dict buf, buf.bytesize
+      # @ptr = Lib.create_d_dict buf, buf.bytesize
+      @ptr = Lib.create_d_dict_by_reference buf, buf.bytesize
     end
 
     def dict_id

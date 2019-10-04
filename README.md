@@ -65,6 +65,20 @@ str = Zstd::Decompress::IO.open(mio) do |dio|
 end
 ```
 
+### Dictionary API
+```
+dict_buffer = File.read("dictionary").to_slice
+dict = Zstd::Dict.new dict_buffer, level: 3
+
+cctx = Zstd::Compress::Context.new dict: dict
+dctx = Zstd::Decompress::Context.new dict: dict
+
+# Compress or decompress using the Buffer or Streaming API's
+
+p dict.dict_id
+p dict.memsize
+```
+
 ## Contributing
 
 1. Fork it (<https://github.com/your-github-user/zstd/fork>)
