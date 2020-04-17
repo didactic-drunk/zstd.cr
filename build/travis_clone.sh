@@ -1,8 +1,12 @@
 #!/bin/bash
 
+set -x
 set -e
 
 cd $HOME
+
+# Sometimes an empty directory is leftover on travis.  Probably from a discarded cache.
+rmdir zstd || true
 
 if [ ! -d zstd ]; then
 	git clone --single-branch --branch=master https://github.com/facebook/zstd.git
