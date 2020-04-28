@@ -3,7 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/didactic-drunk/zstd.cr.svg)](https://github.com/didactic-drunk/zstd.cr/releases)
 [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://didactic-drunk.github.io/zstd.cr/)
 
-Crystal bindings to the Zstandard (zstd) compression library 
+Crystal bindings to the Zstandard (zstd) compression library
 
 ## Features
 - [x] Performance optimized.  20M small decompression messages/sec.
@@ -18,11 +18,15 @@ Crystal bindings to the Zstandard (zstd) compression library
 - [x] Custom dictionaries.
 
 ## Todo
-- [ ] Auto install the most recent zstd if the system library is old or unavailable.
+- [x] Linux: Auto install the most recent zstd if the system library is old or unavailable.
+- [ ] OSX: Auto install the most recent zstd if the system library is old or unavailable.
 - [ ] Support more zstd params.
 - [ ] More specs.
 
 ## Installation
+
+0. On **OSX** ensure that zstd is installed (`brew install zstd`).  
+   On Linux it will be downloaded and compiled automatically if missing.
 
 1. Add the dependency to your `shard.yml`:
 

@@ -1,5 +1,5 @@
 module Zstd
-  @[Link(ldflags: "`command -v pkg-config > /dev/null && pkg-config --libs zstd 2> /dev/null|| printf %s '-lzstd'`")]
+  @[Link(ldflags: "`#{__DIR__}/../../build/pkg-libs.sh #{__DIR__}/../..`")]
   lib Lib
     ZSTD_BLOCKSIZELOG_MAX           =             17
     ZSTD_CLEVEL_DEFAULT             =              3
