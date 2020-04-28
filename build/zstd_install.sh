@@ -23,11 +23,11 @@ cd "$ZSTD_BUILD_DIR"
 if [ ! -f "$ZSTD_INSTALL_PATH/include/zstd.h" ]; then
 	[ ! -z "$ZSTD_BUILD_DEBUG" ] && set -x
 
-	DIRNAME=zstd-"$MIN_ZSTD_VERSION"
+	DIRNAME=zstd-"$CUR_ZSTD_VERSION"
 	TGZ_FILENAME="$DIRNAME".tar.gz
 
 	if [ ! -f "$TGZ_FILENAME" ]; then
-		wget https://github.com/facebook/zstd/releases/download/v"$MIN_ZSTD_VERSION"/"$TGZ_FILENAME"
+		wget https://github.com/facebook/zstd/releases/download/v"$CUR_ZSTD_VERSION"/"$TGZ_FILENAME"
 	fi
 
 	SHA=`openssl sha256 -hex < "$TGZ_FILENAME" | sed 's/^.* //'`
