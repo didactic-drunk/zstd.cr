@@ -25,7 +25,7 @@ Crystal bindings to the Zstandard (zstd) compression library
 
 ## Installation
 
-0. On **OSX** ensure that zstd is installed (`brew install zstd`).
+0. On **OSX** ensure that zstd is installed (`brew install zstd`).  
    On Linux it will be downloaded and compiled automatically if missing.
 
 1. Add the dependency to your `shard.yml`:
