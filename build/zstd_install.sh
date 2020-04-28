@@ -31,9 +31,9 @@ if [ ! -f "$ZSTD_INSTALL_PATH/include/zstd.h" ]; then
 	fi
 
 	SHA=`openssl sha256 -hex < "$TGZ_FILENAME" | sed 's/^.* //'`
-	if [ "$SHA" != "$ZSTD_SHA256" ]; then
+	if [ "$SHA" != "$CUR_ZSTD_SHA256" ]; then
 		echo "SHA256 sum doesn't match."
-		echo "$SHA" != "$ZSTD_SHA256"
+		echo "$SHA" != "$CUR_ZSTD_SHA256"
 		exit 1
 	fi
 
