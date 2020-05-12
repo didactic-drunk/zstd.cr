@@ -5,7 +5,7 @@ set -e
 # Shard directory passed as first argument when called from lib.cr
 [ ! -z "$1" ] && cd "$1"
 
-./build/zstd_install.sh > zstd_install.out 2>&1
+./build/zstd_install.sh > zstd_install.out 2>&1 || (cat zstd_install.out >&2 ; exit 2)
 
 . ./build/env.sh
 

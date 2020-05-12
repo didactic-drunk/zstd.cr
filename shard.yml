@@ -8,3 +8,5 @@ development_dependencies:
   libgen:
     github: olbat/libgen
 license: MIT
+scripts:
+  postinstall: ./build/zstd_install.sh
