@@ -1,7 +1,7 @@
 require "semantic_version"
 
 module Zstd
-  VERSION = "1.1.0"
+  VERSION = "1.1.1"
 
   LIB_VERSION         = SemanticVersion.parse String.new(Lib.version_string)
   LIB_VERSION_MINIMUM = SemanticVersion.parse("1.4.4")
