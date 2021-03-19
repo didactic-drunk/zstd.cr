@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.35.1">
+<meta name="crystal_docs.project_version" content="HEAD-dev">
+<meta name="crystal_docs.project_name" content="zstd">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="zstd">
+  <title>Zstd::Compress - zstd HEAD-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          zstd
+        </a>
+      </h1>
+
+      <span class="project-version">
+        HEAD-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="zstd/Zstd" data-name="zstd">
+      <a href="../Zstd.html">Zstd</a>
+      
+        <ul>
+  
+  <li class="parent open current" data-id="zstd/Zstd/Compress" data-name="zstd::compress">
+      <a href="../Zstd/Compress.html">Compress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress/Context" data-name="zstd::compress::context">
+      <a href="../Zstd/Compress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Context/Error" data-name="zstd::compress::context::error">
+      <a href="../Zstd/Compress/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Dict" data-name="zstd::compress::dict">
+      <a href="../Zstd/Compress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress/IO" data-name="zstd::compress::io">
+      <a href="../Zstd/Compress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/IO/Error" data-name="zstd::compress::io::error">
+      <a href="../Zstd/Compress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Context" data-name="zstd::context">
+      <a href="../Zstd/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Context/Error" data-name="zstd::context::error">
+      <a href="../Zstd/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress" data-name="zstd::decompress">
+      <a href="../Zstd/Decompress.html">Decompress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context" data-name="zstd::decompress::context">
+      <a href="../Zstd/Decompress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context/Error" data-name="zstd::decompress::context::error">
+      <a href="../Zstd/Decompress/Context/Error.html">Error</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Context/Error/FrameSizeUnknown" data-name="zstd::decompress::context::error::framesizeunknown">
+      <a href="../Zstd/Decompress/Context/Error/FrameSizeUnknown.html">FrameSizeUnknown</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Dict" data-name="zstd::decompress::dict">
+      <a href="../Zstd/Decompress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/IO" data-name="zstd::decompress::io">
+      <a href="../Zstd/Decompress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/IO/Error" data-name="zstd::decompress::io::error">
+      <a href="../Zstd/Decompress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Dict" data-name="zstd::dict">
+      <a href="../Zstd/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Error" data-name="zstd::error">
+      <a href="../Zstd/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">module</span> Zstd::Compress
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="LEVEL_DEFAULT">
+        <strong>LEVEL_DEFAULT</strong> = <code><span class="t">ENV</span>[<span class="s">&quot;ZSTD_CLEVEL&quot;</span>]?.try(<span class="o">&amp;</span>.to_i) || <span class="n">3</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>The default compression level.</p>
+
+<p>Uses ENV["ZSTD_CLEVEL"] just like the command line utilities.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="LEVEL_MAX">
+        <strong>LEVEL_MAX</strong> = <code><span class="t">Lib</span>.max_c_level.to_i</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LEVEL_MIN">
+        <strong>LEVEL_MIN</strong> = <code><span class="t">Lib</span>.min_c_level.to_i</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+<div class="methods-inherited">
+  
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
