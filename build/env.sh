@@ -10,8 +10,8 @@ export MIN_ZSTD_VERSION=1.4.0
 
 # This version gets installed if the
 # system zstd is too old or missing.
-export CUR_ZSTD_VERSION=1.4.4
-export CUR_ZSTD_SHA256=59ef70ebb757ffe74a7b3fe9c305e2ba3350021a918d168a046c6300aeea9315
+export CUR_ZSTD_VERSION=1.4.9
+export CUR_ZSTD_SHA256=29ac74e19ea28659017361976240c4b5c5c24db3b89338731a6feb97c038d293
 
 [ ! -z "$ZSTD_BUILD_DEBUG" ] && export ZSTD_BUILD_VERBOSE=1
 
