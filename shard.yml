@@ -4,9 +4,9 @@ version: 1.1.1
 authors:
 - Didactic Drunk <1479616+didactic-drunk@users.noreply.github.com>
 crystal: "*"
-development_dependencies:
-  libgen:
-    github: olbat/libgen
+#development_dependencies:
+#  libgen:
+#    github: olbat/libgen
 license: MIT
 scripts:
   postinstall: "./build/zstd_install.sh"

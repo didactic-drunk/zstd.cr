@@ -1,18 +1,34 @@
 name: Crystal CI
 
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
+
     container:
       image: crystallang/crystal
-    
+
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+    - name: apt update
+      run: apt update
+    - name: Install wget
+      run: apt-get install -y wget
+    - name: Cache libsodium
+      uses: actions/cache@v2
+      with:
+        path: ~/build/zstd-*
+        key: ${{ runner.os }}-libsodium-${{ hashFiles('build/env.sh') }}
     - name: Install dependencies
       run: shards install
     - name: Run tests
-      run: crystal spec
+      run: crystal spec -Dpreview_mt --order random --error-on-warnings
+    - name: Run bulid
+      run: shards build -Dpreview_mt
+    - name: Run format
+      run: crystal tool format --check
