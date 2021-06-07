@@ -1,7 +1,7 @@
 # zstd
-[![Build Status](https://travis-ci.org/didactic-drunk/zstd.cr.svg?branch=master)](https://travis-ci.org/didactic-drunk/zstd.cr)
+[![Crystal CI](https://github.com/didactic-drunk/zstd.cr/actions/workflows/crystal.yml/badge.svg)](https://github.com/didactic-drunk/zstd.cr/actions/workflows/crystal.yml)
 [![GitHub release](https://img.shields.io/github/release/didactic-drunk/zstd.cr.svg)](https://github.com/didactic-drunk/zstd.cr/releases)
-[![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://didactic-drunk.github.io/zstd.cr/)
+[![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://didactic-drunk.github.io/zstd.cr/master)
 
 Crystal bindings to the Zstandard (zstd) compression library
 
