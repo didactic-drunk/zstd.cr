@@ -71,7 +71,7 @@ class Zstd::Decompress::IO < ::IO
       @more_output = obuffer.pos == obuffer.size ? true : false
     end
 
-    obuffer.pos
+    obuffer.pos.to_i32
   end
 
   private def fill_buffer
