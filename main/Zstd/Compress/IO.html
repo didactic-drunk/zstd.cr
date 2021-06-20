@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="zstd">
+
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/doc.js"></script>
+
+  <meta name="repository-name" content="zstd">
+  <title>Zstd::Compress::IO - zstd main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../../index.html">
+          zstd
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="zstd/Zstd" data-name="zstd">
+      <a href="../../Zstd.html">Zstd</a>
+      
+        <ul>
+  
+  <li class="parent open current" data-id="zstd/Zstd/Compress" data-name="zstd::compress">
+      <a href="../../Zstd/Compress.html">Compress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress/Context" data-name="zstd::compress::context">
+      <a href="../../Zstd/Compress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Context/Error" data-name="zstd::compress::context::error">
+      <a href="../../Zstd/Compress/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Dict" data-name="zstd::compress::dict">
+      <a href="../../Zstd/Compress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="zstd/Zstd/Compress/IO" data-name="zstd::compress::io">
+      <a href="../../Zstd/Compress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/IO/Error" data-name="zstd::compress::io::error">
+      <a href="../../Zstd/Compress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Context" data-name="zstd::context">
+      <a href="../../Zstd/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Context/Error" data-name="zstd::context::error">
+      <a href="../../Zstd/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress" data-name="zstd::decompress">
+      <a href="../../Zstd/Decompress.html">Decompress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context" data-name="zstd::decompress::context">
+      <a href="../../Zstd/Decompress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context/Error" data-name="zstd::decompress::context::error">
+      <a href="../../Zstd/Decompress/Context/Error.html">Error</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Context/Error/FrameSizeUnknown" data-name="zstd::decompress::context::error::framesizeunknown">
+      <a href="../../Zstd/Decompress/Context/Error/FrameSizeUnknown.html">FrameSizeUnknown</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Dict" data-name="zstd::decompress::dict">
+      <a href="../../Zstd/Decompress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/IO" data-name="zstd::decompress::io">
+      <a href="../../Zstd/Decompress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/IO/Error" data-name="zstd::decompress::io::error">
+      <a href="../../Zstd/Decompress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Dict" data-name="zstd::dict">
+      <a href="../../Zstd/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Error" data-name="zstd::error">
+      <a href="../../Zstd/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Zstd::Compress::IO
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Zstd/Compress/IO.html">Zstd::Compress::IO</a></li><li class="superclass">IO</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L3" target="_blank">
+        zstd/compress/io.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="OUTPUT_BUFFER_SIZE">
+        <strong>OUTPUT_BUFFER_SIZE</strong> = <code><span class="t">Lib</span>.c_stream_out_size.to_i</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(io:::IO,level:Int32=LEVEL_DEFAULT,*,output_buffer:Bytes?=nil)-class-method" class="signature"><strong>.new</strong>(io : ::IO, level : Int32 = <span class="t">LEVEL_DEFAULT</span>, *, output_buffer : Bytes? = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>output_buffer: If provided should be <code><a href="../../Zstd/Compress/IO.html#OUTPUT_BUFFER_SIZE">OUTPUT_BUFFER_SIZE</a></code> bytes.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#open(io,level:Int32=LEVEL_DEFAULT,*,output_buffer:Bytes?=nil,&)-class-method" class="signature"><strong>.open</strong>(io, level : Int32 = <span class="t">LEVEL_DEFAULT</span>, *, output_buffer : Bytes? = <span class="n">nil</span>, &)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#checksum(*args,**options)-instance-method" class="signature"><strong>#checksum</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#checksum(*args,**options,&)-instance-method" class="signature"><strong>#checksum</strong>(*args, **options, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#checksum=(arg)-instance-method" class="signature"><strong>#checksum=</strong>(arg)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close:Nil-instance-method" class="signature"><strong>#close</strong> : Nil</a>
+        
+          <div class="summary"><p>Closes this <code><a href="../../Zstd/Compress/IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#closed?:Bool-instance-method" class="signature"><strong>#closed?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this writer is closed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level(*args,**options)-instance-method" class="signature"><strong>#level</strong>(*args, **options)</a>
+        
+          <div class="summary"><p>Compression level (0..22)</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level(*args,**options,&)-instance-method" class="signature"><strong>#level</strong>(*args, **options, &)</a>
+        
+          <div class="summary"><p>Compression level (0..22)</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level=(arg)-instance-method" class="signature"><strong>#level=</strong>(arg)</a>
+        
+          <div class="summary"><p>Compression level (0..22)</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#read(slice:Bytes)-instance-method" class="signature"><strong>#read</strong>(slice : Bytes)</a>
+        
+          <div class="summary"><p>Reads at most <em>slice.size</em> bytes from this <code><a href="../../Zstd/Compress/IO.html">IO</a></code> into <em>slice</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sync_close=(sync_close)-instance-method" class="signature"><strong>#sync_close=</strong>(sync_close)</a>
+        
+          <div class="summary"><p>Whether to close the enclosed <code><a href="../../Zstd/Compress/IO.html">IO</a></code> when closing this writer.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sync_close?:Bool-instance-method" class="signature"><strong>#sync_close?</strong> : Bool</a>
+        
+          <div class="summary"><p>Whether to close the enclosed <code><a href="../../Zstd/Compress/IO.html">IO</a></code> when closing this writer.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#threads(*args,**options)-instance-method" class="signature"><strong>#threads</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#threads(*args,**options,&)-instance-method" class="signature"><strong>#threads</strong>(*args, **options, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#threads=(arg)-instance-method" class="signature"><strong>#threads=</strong>(arg)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write(slice:Bytes):Nil-instance-method" class="signature"><strong>#write</strong>(slice : Bytes) : Nil</a>
+        
+          <div class="summary"><p>Writes the contents of <em>slice</em> into this <code><a href="../../Zstd/Compress/IO.html">IO</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(io:::IO,level:Int32=LEVEL_DEFAULT,*,output_buffer:Bytes?=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(io : ::IO, level : Int32 = <span class="t">LEVEL_DEFAULT</span>, *, output_buffer : Bytes? = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new(io:::IO,level:Int32=LEVEL_DEFAULT,*,output_buffer:Bytes?=nil)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>output_buffer: If provided should be <code><a href="../../Zstd/Compress/IO.html#OUTPUT_BUFFER_SIZE">OUTPUT_BUFFER_SIZE</a></code> bytes.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="open(io,level:Int32=LEVEL_DEFAULT,*,output_buffer:Bytes?=nil,&)-class-method">
+      <div class="signature">
+        
+        def self.<strong>open</strong>(io, level : Int32 = <span class="t">LEVEL_DEFAULT</span>, *, output_buffer : Bytes? = <span class="n">nil</span>, &)
+
+        <a class="method-permalink" href="#open(io,level:Int32=LEVEL_DEFAULT,*,output_buffer:Bytes?=nil,&)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="checksum(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>checksum</strong>(*args, **options)
+
+        <a class="method-permalink" href="#checksum(*args,**options)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="checksum(*args,**options,&)-instance-method">
+      <div class="signature">
+        
+        def <strong>checksum</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#checksum(*args,**options,&)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="checksum=(arg)-instance-method">
+      <div class="signature">
+        
+        def <strong>checksum=</strong>(arg)
+
+        <a class="method-permalink" href="#checksum=(arg)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close:Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>close</strong> : Nil
+
+        <a class="method-permalink" href="#close:Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class IO
+            </div>
+          
+          <p>Closes this <code><a href="../../Zstd/Compress/IO.html">IO</a></code>.</p>
+
+<p><code><a href="../../Zstd/Compress/IO.html">IO</a></code> defines this is a no-op method, but including types may override.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="closed?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>closed?</strong> : Bool
+
+        <a class="method-permalink" href="#closed?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this writer is closed.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>level</strong>(*args, **options)
+
+        <a class="method-permalink" href="#level(*args,**options)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compression level (0..22)</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level(*args,**options,&)-instance-method">
+      <div class="signature">
+        
+        def <strong>level</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#level(*args,**options,&)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compression level (0..22)</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level=(arg)-instance-method">
+      <div class="signature">
+        
+        def <strong>level=</strong>(arg)
+
+        <a class="method-permalink" href="#level=(arg)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Compression level (0..22)</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="read(slice:Bytes)-instance-method">
+      <div class="signature">
+        
+        def <strong>read</strong>(slice : Bytes)
+
+        <a class="method-permalink" href="#read(slice:Bytes)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class IO
+            </div>
+          
+          <p>Reads at most <em>slice.size</em> bytes from this <code><a href="../../Zstd/Compress/IO.html">IO</a></code> into <em>slice</em>.
+Returns the number of bytes read, which is 0 if and only if there is no
+more data to read (so checking for 0 is the way to detect end of file).</p>
+
+<pre><code class="language-crystal">io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.<span class="k">new</span> <span class="s">&quot;hello&quot;</span>
+slice <span class="o">=</span> <span class="t">Bytes</span>.<span class="k">new</span>(<span class="n">4</span>)
+io.read(slice) <span class="c"># =&gt; 4</span>
+slice          <span class="c"># =&gt; Bytes[104, 101, 108, 108]</span>
+io.read(slice) <span class="c"># =&gt; 1</span>
+slice          <span class="c"># =&gt; Bytes[111, 101, 108, 108]</span>
+io.read(slice) <span class="c"># =&gt; 0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sync_close=(sync_close)-instance-method">
+      <div class="signature">
+        
+        def <strong>sync_close=</strong>(sync_close)
+
+        <a class="method-permalink" href="#sync_close=(sync_close)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Whether to close the enclosed <code><a href="../../Zstd/Compress/IO.html">IO</a></code> when closing this writer.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sync_close?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>sync_close?</strong> : Bool
+
+        <a class="method-permalink" href="#sync_close?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Whether to close the enclosed <code><a href="../../Zstd/Compress/IO.html">IO</a></code> when closing this writer.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="threads(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>threads</strong>(*args, **options)
+
+        <a class="method-permalink" href="#threads(*args,**options)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="threads(*args,**options,&)-instance-method">
+      <div class="signature">
+        
+        def <strong>threads</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#threads(*args,**options,&)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="threads=(arg)-instance-method">
+      <div class="signature">
+        
+        def <strong>threads=</strong>(arg)
+
+        <a class="method-permalink" href="#threads=(arg)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write(slice:Bytes):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>write</strong>(slice : Bytes) : Nil
+
+        <a class="method-permalink" href="#write(slice:Bytes):Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class IO
+            </div>
+          
+          <p>Writes the contents of <em>slice</em> into this <code><a href="../../Zstd/Compress/IO.html">IO</a></code>.</p>
+
+<pre><code class="language-crystal">io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.<span class="k">new</span>
+slice <span class="o">=</span> <span class="t">Bytes</span>.<span class="k">new</span>(<span class="n">4</span>) { <span class="o">|</span>i<span class="o">|</span> (<span class="s">&#39;a&#39;</span>.ord <span class="o">+</span> i).to_u8 }
+io.write(slice)
+io.to_s <span class="c"># =&gt; &quot;abcd&quot;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/compress/io.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

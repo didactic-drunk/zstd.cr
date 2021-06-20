@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="zstd">
+
+
+
+<link href="../../../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../../js/doc.js"></script>
+
+  <meta name="repository-name" content="zstd">
+  <title>Zstd::Decompress::IO::Error - zstd main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../../../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../../../index.html">
+          zstd
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="zstd/Zstd" data-name="zstd">
+      <a href="../../../Zstd.html">Zstd</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress" data-name="zstd::compress">
+      <a href="../../../Zstd/Compress.html">Compress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress/Context" data-name="zstd::compress::context">
+      <a href="../../../Zstd/Compress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Context/Error" data-name="zstd::compress::context::error">
+      <a href="../../../Zstd/Compress/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Dict" data-name="zstd::compress::dict">
+      <a href="../../../Zstd/Compress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress/IO" data-name="zstd::compress::io">
+      <a href="../../../Zstd/Compress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/IO/Error" data-name="zstd::compress::io::error">
+      <a href="../../../Zstd/Compress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Context" data-name="zstd::context">
+      <a href="../../../Zstd/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Context/Error" data-name="zstd::context::error">
+      <a href="../../../Zstd/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent open current" data-id="zstd/Zstd/Decompress" data-name="zstd::decompress">
+      <a href="../../../Zstd/Decompress.html">Decompress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context" data-name="zstd::decompress::context">
+      <a href="../../../Zstd/Decompress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context/Error" data-name="zstd::decompress::context::error">
+      <a href="../../../Zstd/Decompress/Context/Error.html">Error</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Context/Error/FrameSizeUnknown" data-name="zstd::decompress::context::error::framesizeunknown">
+      <a href="../../../Zstd/Decompress/Context/Error/FrameSizeUnknown.html">FrameSizeUnknown</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Dict" data-name="zstd::decompress::dict">
+      <a href="../../../Zstd/Decompress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="zstd/Zstd/Decompress/IO" data-name="zstd::decompress::io">
+      <a href="../../../Zstd/Decompress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="zstd/Zstd/Decompress/IO/Error" data-name="zstd::decompress::io::error">
+      <a href="../../../Zstd/Decompress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Dict" data-name="zstd::dict">
+      <a href="../../../Zstd/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Error" data-name="zstd::error">
+      <a href="../../../Zstd/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Zstd::Decompress::IO::Error
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Zstd/Decompress/IO/Error.html">Zstd::Decompress::IO::Error</a></li><li class="superclass"><a href="../../../Zstd/Error.html">Zstd::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/didactic-drunk/zstd.cr/blob/295667ef44dd07a1520d6d3f8a6488e15b7b77d6/src/zstd/decompress/io.cr#L5" target="_blank">
+        zstd/decompress/io.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+  <h3>Constructor methods inherited from class <code><a href="../../../Zstd/Error.html">Zstd::Error</a></code></h3>
+  
+  
+    <a href="../../../Zstd/Error.html#new(r,msg:String)-class-method" class="tooltip">
+      <span>new(r, msg : String)<br/>new(msg : String)</span>
+    new</a>
+    
+  
+
+
+    
+
+  <h3>Class methods inherited from class <code><a href="../../../Zstd/Error.html">Zstd::Error</a></code></h3>
+  
+  
+    <a href="../../../Zstd/Error.html#raise_if_error(r,msg)-class-method" class="tooltip">
+      <span>raise_if_error(r, msg)</span>
+    raise_if_error</a>
+    
+  
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="zstd">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="zstd">
+  <title>zstd main</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          zstd
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="zstd/Zstd" data-name="zstd">
+      <a href="Zstd.html">Zstd</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress" data-name="zstd::compress">
+      <a href="Zstd/Compress.html">Compress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress/Context" data-name="zstd::compress::context">
+      <a href="Zstd/Compress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Context/Error" data-name="zstd::compress::context::error">
+      <a href="Zstd/Compress/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/Dict" data-name="zstd::compress::dict">
+      <a href="Zstd/Compress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Compress/IO" data-name="zstd::compress::io">
+      <a href="Zstd/Compress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Compress/IO/Error" data-name="zstd::compress::io::error">
+      <a href="Zstd/Compress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Context" data-name="zstd::context">
+      <a href="Zstd/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Context/Error" data-name="zstd::context::error">
+      <a href="Zstd/Context/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress" data-name="zstd::decompress">
+      <a href="Zstd/Decompress.html">Decompress</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context" data-name="zstd::decompress::context">
+      <a href="Zstd/Decompress/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/Context/Error" data-name="zstd::decompress::context::error">
+      <a href="Zstd/Decompress/Context/Error.html">Error</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Context/Error/FrameSizeUnknown" data-name="zstd::decompress::context::error::framesizeunknown">
+      <a href="Zstd/Decompress/Context/Error/FrameSizeUnknown.html">FrameSizeUnknown</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/Dict" data-name="zstd::decompress::dict">
+      <a href="Zstd/Decompress/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class="parent " data-id="zstd/Zstd/Decompress/IO" data-name="zstd::decompress::io">
+      <a href="Zstd/Decompress/IO.html">IO</a>
+      
+        <ul>
+  
+  <li class=" " data-id="zstd/Zstd/Decompress/IO/Error" data-name="zstd::decompress::io::error">
+      <a href="Zstd/Decompress/IO/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Dict" data-name="zstd::dict">
+      <a href="Zstd/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class=" " data-id="zstd/Zstd/Error" data-name="zstd::error">
+      <a href="Zstd/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1><a id="zstd" class="anchor" href="#zstd">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>zstd</h1>
+
+<p><a href="https://github.com/didactic-drunk/zstd.cr/actions/workflows/crystal.yml"><img src="https://github.com/didactic-drunk/zstd.cr/actions/workflows/crystal.yml/badge.svg" alt="Crystal CI"/></a>
+<a href="https://github.com/didactic-drunk/zstd.cr/releases"><img src="https://img.shields.io/github/release/didactic-drunk/zstd.cr.svg" alt="GitHub release"/></a>
+<img src="https://img.shields.io/github/commits-since/didactic-drunk/zstd.cr/latest" alt="GitHub commits since latest release (by date) for a branch"/>
+<a href="https://didactic-drunk.github.io/zstd.cr/master"><img src="https://img.shields.io/badge/docs-available-brightgreen.svg" alt="Docs"/></a></p>
+
+<p>Crystal bindings to the Zstandard (zstd) compression library</p>
+
+<h2><a id="features" class="anchor" href="#features">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Features</h2>
+
+<ul><li>[x] Performance optimized.  20M small decompression messages/sec.</li><li>[x] All API calls allow reusable buffers to reduce GC overhead.</li><li>[x] No heap allocations after #initialize.</li><li>[x] Crystal IO compatible Streaming API.</li><li>[x] Snappy like buffer API for handling small messages.</li><li>[x] <code>export ZSTD_CLEVEL=1</code> sets the default compression level just like the zstd command line utilities.</li><li>[x] Only require what you need for faster compilation. (require "zstd/compress/context")</li></ul>
+
+<h2><a id="experimental-features.-apis-subject-to-change." class="anchor" href="#experimental-features.-apis-subject-to-change.">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Experimental Features.  API's subject to change.</h2>
+
+<ul><li>[x] Custom dictionaries.</li></ul>
+
+<h2><a id="todo" class="anchor" href="#todo">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Todo</h2>
+
+<ul><li>[x] Linux: Auto install the most recent zstd if the system library is old or unavailable.</li><li>[ ] OSX: Auto install the most recent zstd if the system library is old or unavailable.</li><li>[ ] Support more zstd params.</li><li>[ ] More specs.</li></ul>
+
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
+
+<ol><li>On <strong>OSX</strong> ensure that zstd is installed (<code>brew install zstd</code>).  
+   On Linux it will be downloaded and compiled automatically if missing.</li></ol>
+
+<ol><li>Add the dependency to your <code>shard.yml</code>:</li></ol>
+
+<p><code></code>`yaml
+   dependencies:</p>
+
+<pre><code class="language-crystal"> zstd:
+   github: didactic-drunk/zstd.cr</code></pre>
+
+<p><code></code>`</p>
+
+<ol><li>Run <code>shards install</code></li></ol>
+
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;zstd&quot;</span></code></pre>
+
+<h3><a id="buffer-api" class="anchor" href="#buffer-api">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Buffer API</h3>
+
+<pre><code class="language-crystal">cctx <span class="o">=</span> <span class="t">Zstd</span><span class="t">::</span><span class="t">Compress</span><span class="t">::</span><span class="t">Context</span>.<span class="k">new</span>(level: <span class="n">1</span>)
+cbuf <span class="o">=</span> cctx.compress buf
+
+dctx <span class="o">=</span> <span class="t">Zstd</span><span class="t">::</span><span class="t">Decompress</span><span class="t">::</span><span class="t">Context</span>.<span class="k">new</span>
+dbuf <span class="o">=</span> dctx.decompress cbuf</code></pre>
+
+<h3><a id="streaming-api" class="anchor" href="#streaming-api">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Streaming API</h3>
+
+<pre><code class="language-crystal">buf <span class="o">=</span> <span class="t">Bytes</span>.<span class="k">new</span> <span class="n">5</span>
+mio <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.<span class="k">new</span>
+<span class="t">Zstd</span><span class="t">::</span><span class="t">Compress</span><span class="t">::</span><span class="t">IO</span>.open(mio, level: <span class="n">1</span>) <span class="k">do</span> <span class="o">|</span>cio<span class="o">|</span>
+  cio.write buf
+<span class="k">end</span>
+
+mio.rewind
+str <span class="o">=</span> <span class="t">Zstd</span><span class="t">::</span><span class="t">Decompress</span><span class="t">::</span><span class="t">IO</span>.open(mio) <span class="k">do</span> <span class="o">|</span>dio<span class="o">|</span>
+  dio.gets_to_end
+<span class="k">end</span></code></pre>
+
+<h3><a id="dictionary-api" class="anchor" href="#dictionary-api">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Dictionary API</h3>
+
+<pre><code class="language-crystal">dict_buffer <span class="o">=</span> <span class="t">File</span>.read(<span class="s">&quot;dictionary&quot;</span>).to_slice
+dict <span class="o">=</span> <span class="t">Zstd</span><span class="t">::</span><span class="t">Dict</span>.<span class="k">new</span> dict_buffer, level: <span class="n">3</span>
+
+cctx <span class="o">=</span> <span class="t">Zstd</span><span class="t">::</span><span class="t">Compress</span><span class="t">::</span><span class="t">Context</span>.<span class="k">new</span> dict: dict
+dctx <span class="o">=</span> <span class="t">Zstd</span><span class="t">::</span><span class="t">Decompress</span><span class="t">::</span><span class="t">Context</span>.<span class="k">new</span> dict: dict
+
+<span class="c"># Compress or decompress using the Buffer or Streaming API&#39;s</span>
+
+p dict.dict_id
+p dict.memsize</code></pre>
+
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
+
+<ol><li>Fork it (&lt;https://github.com/your-github-user/zstd/fork>)</li><li><strong>Install a formatting check git hook (ln -sf ../../scripts/git/pre-commit .git/hooks)</strong></li><li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li><li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li><li>Push to the branch (<code>git push origin my-new-feature</code>)</li><li>Create a new Pull Request</li></ol>
+
+<h2><a id="contributors" class="anchor" href="#contributors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributors</h2>
+
+<ul><li><a href="https://github.com/didactic-drunk">Didactic Drunk</a> - creator and maintainer</li></ul>
+</div>
+</body>
+</html>
