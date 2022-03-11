@@ -44,7 +44,7 @@ if [ ! -f "$ZSTD_INSTALL_PATH/include/zstd.h" ]; then
 
 	cd "$DIRNAME"
 	if [ ! -f ".make.done" ]; then
-		make
+		make PREFIX="$ZSTD_INSTALL_PATH"
 		touch .make.done
 	fi
 	if [ ! -f ".make.install.done" ]; then
@@ -56,7 +56,7 @@ if [ ! -f "$ZSTD_INSTALL_PATH/include/zstd.h" ]; then
 else
 #	find "$ZSTD_INSTALL_PATH"
 
-	[ ! -z "$ZSTD_BUILD_VERBOSE" ] && echo "Using already built zstd."
+	[ ! -z "$ZSTD_BUILD_VERBOSE" ] && echo "Using already built zstd. $ZSTD_INSTALL_PATH"
 fi
 
 exit 0

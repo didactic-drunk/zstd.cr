@@ -10,8 +10,8 @@ export MIN_ZSTD_VERSION=1.4.0
 
 # This version gets installed if the
 # system zstd is too old or missing.
-export CUR_ZSTD_VERSION=1.4.9
-export CUR_ZSTD_SHA256=29ac74e19ea28659017361976240c4b5c5c24db3b89338731a6feb97c038d293
+export CUR_ZSTD_VERSION=1.5.2
+export CUR_ZSTD_SHA256=7c42d56fac126929a6a85dbc73ff1db2411d04f104fae9bdea51305663a83fd0
 
 [ ! -z "$ZSTD_BUILD_DEBUG" ] && export ZSTD_BUILD_VERBOSE=1
 
@@ -33,6 +33,6 @@ fi
 
 
 if [ "$ZSTD_INSTALL" = "1" ]; then
-	export ZSTD_INSTALL_PATH="$ZSTD_BUILD_DIR"/zstd
+	export ZSTD_INSTALL_PATH="$ZSTD_BUILD_DIR/zstd-${CUR_ZSTD_VERSION}-build"
 	export PKG_CONFIG_PATH="$ZSTD_INSTALL_PATH"/lib/pkgconfig
 fi

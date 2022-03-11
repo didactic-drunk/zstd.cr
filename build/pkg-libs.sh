@@ -25,7 +25,6 @@ set -e
 # system zstd can often neither be upgraded nor removed without
 # a full distro upgrade, we apply the following hack here that
 # forces the linker to prefer our custom library path.
-
 lpath=$(pkg-config libzstd --libs-only-L | cut -c 3-)
 echo "-L${lpath} -Wl,-rpath,${lpath} -lzstd"
 
