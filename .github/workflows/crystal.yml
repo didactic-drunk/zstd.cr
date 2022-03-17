@@ -37,12 +37,10 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/build/zstd-*
-        key: ${{ runner.os }}-libsodium-${{ hashFiles('build/env.sh') }}
+        key: ${{ runner.os }}-libsodium-${{ hashFiles('build/*.sh') }}
     - name: Install dependencies
       run: shards install
     - name: Run tests
       run: crystal spec -Dpreview_mt --order random --error-on-warnings
-    - name: Run bulid
-      run: shards build -Dpreview_mt
     - name: Run format
       run: crystal tool format --check
