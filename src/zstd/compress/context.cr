@@ -59,11 +59,11 @@ class Zstd::Compress::Context < Zstd::Context
 		end
 	{% end %}
 
-  def checksum
+  def checksum? : Bool
     checksum_flag.to_i != 0
   end
 
-  def checksum=(value : Bool)
+  def checksum=(value : Bool) : Bool
     self.checksum_flag = value ? 1 : 0
     value
   end

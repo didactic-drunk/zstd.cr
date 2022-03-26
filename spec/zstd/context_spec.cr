@@ -59,7 +59,7 @@ describe Zstd::Compress::Context do
     cctx.checksum = true
 
     cbuf2 = cctx.compress buf
-    cctx.checksum.should be_true
+    cctx.checksum?.should be_true
     cbuf2.bytesize.should eq(cbuf.bytesize + 4)
     dbuf = dctx.decompress cbuf2
 
