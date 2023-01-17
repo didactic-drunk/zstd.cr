@@ -93,5 +93,7 @@ class Zstd::Decompress::IO < ::IO
     @closed = true
 
     @io.close if @sync_close
+  ensure
+    @ctx.close
   end
 end
