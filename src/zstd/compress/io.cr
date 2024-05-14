@@ -89,5 +89,7 @@ class Zstd::Compress::IO < IO
     write_loop Lib::ZstdEndDirective::ZstdEEnd
 
     @io.close if @sync_close
+  ensure
+    @ctx.close
   end
 end
